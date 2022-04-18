@@ -8,6 +8,8 @@ import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.Window;
+import java.io.IOException;
+import java.net.URISyntaxException;
 
 /**
  *
@@ -32,7 +34,7 @@ public class Principal extends javax.swing.JFrame {
     }
     @Override
     public Image getIconImage(){
-        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("com.icon/icon.png"));
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("icon/serpiente_1.png"));
         return retValue;
     }
     
@@ -53,6 +55,9 @@ public class Principal extends javax.swing.JFrame {
         btn_exit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Serpientes y Escaleras");
+        setIconImage(getIconImage());
+        setMaximumSize(new java.awt.Dimension(940, 600));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -66,6 +71,7 @@ public class Principal extends javax.swing.JFrame {
         btn_startGame.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
         btn_startGame.setForeground(new java.awt.Color(255, 255, 255));
         btn_startGame.setText("Iniciar Juego");
+        btn_startGame.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_startGame.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_startGameActionPerformed(evt);
@@ -76,6 +82,7 @@ public class Principal extends javax.swing.JFrame {
         btn_developers.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
         btn_developers.setForeground(new java.awt.Color(255, 255, 255));
         btn_developers.setText("Desarrolladores");
+        btn_developers.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_developers.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_developersMouseClicked(evt);
@@ -91,11 +98,23 @@ public class Principal extends javax.swing.JFrame {
         btn_documentation.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
         btn_documentation.setForeground(new java.awt.Color(255, 255, 255));
         btn_documentation.setText("Documentación");
+        btn_documentation.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_documentation.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_documentationMouseClicked(evt);
+            }
+        });
 
         btn_exit.setBackground(new java.awt.Color(153, 153, 255));
         btn_exit.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
         btn_exit.setForeground(new java.awt.Color(255, 255, 255));
         btn_exit.setText("Salir");
+        btn_exit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_exit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_exitMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -149,6 +168,23 @@ public class Principal extends javax.swing.JFrame {
         dev.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btn_developersMouseClicked
+
+    private void btn_documentationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_documentationMouseClicked
+        if(java.awt.Desktop.isDesktopSupported()){
+            java.awt.Desktop desktop = java.awt.Desktop.getDesktop();
+            
+            if(desktop.isSupported(java.awt.Desktop.Action.BROWSE)){
+                try{
+                    java.net.URI uri = new java.net.URI("https://drive.google.com/drive/folders/1kPvU17E7YoBa2j2eAT4AUfjiVN98gPeF?usp=sharing");
+                    desktop.browse(uri);
+                }catch(URISyntaxException | IOException ex){}
+            }
+    }                                             
+    }//GEN-LAST:event_btn_documentationMouseClicked
+
+    private void btn_exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_exitMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_btn_exitMouseClicked
 
     /**
      * @param args the command line arguments
