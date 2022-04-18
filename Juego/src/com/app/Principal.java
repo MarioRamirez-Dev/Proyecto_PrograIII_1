@@ -5,6 +5,7 @@
 package com.app;
 
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.Window;
 
@@ -28,6 +29,11 @@ public class Principal extends javax.swing.JFrame {
         int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
         int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
         frame.setLocation(x, y);
+    }
+    @Override
+    public Image getIconImage(){
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("com.icon/icon.png"));
+        return retValue;
     }
     
     /**
@@ -70,6 +76,11 @@ public class Principal extends javax.swing.JFrame {
         btn_developers.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
         btn_developers.setForeground(new java.awt.Color(255, 255, 255));
         btn_developers.setText("Desarrolladores");
+        btn_developers.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_developersMouseClicked(evt);
+            }
+        });
         btn_developers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_developersActionPerformed(evt);
@@ -132,6 +143,12 @@ public class Principal extends javax.swing.JFrame {
     private void btn_developersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_developersActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_developersActionPerformed
+
+    private void btn_developersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_developersMouseClicked
+        Developers dev = new Developers();
+        dev.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btn_developersMouseClicked
 
     /**
      * @param args the command line arguments
