@@ -8,6 +8,7 @@ import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.Window;
+import javax.swing.Icon;
 
 /**
  *
@@ -61,6 +62,10 @@ public class Jugadores extends javax.swing.JFrame {
         lblNp2 = new javax.swing.JLabel();
         lblNp3 = new javax.swing.JLabel();
         lblNp4 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        lbldadouno = new javax.swing.JLabel();
+        lbldadodos = new javax.swing.JLabel();
+        ResultadoDados = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Juego");
@@ -76,7 +81,6 @@ public class Jugadores extends javax.swing.JFrame {
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("JUGADORES");
 
         cbxPlayers.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2", "3", "4" }));
@@ -88,31 +92,19 @@ public class Jugadores extends javax.swing.JFrame {
 
         lblP1.setBackground(new java.awt.Color(255, 255, 255));
         lblP1.setFont(new java.awt.Font("Century Gothic", 2, 14)); // NOI18N
-        lblP1.setForeground(new java.awt.Color(0, 0, 0));
         lblP1.setText("Nombre Jugador 1");
 
         lblP2.setBackground(new java.awt.Color(255, 255, 255));
         lblP2.setFont(new java.awt.Font("Century Gothic", 2, 14)); // NOI18N
-        lblP2.setForeground(new java.awt.Color(0, 0, 0));
         lblP2.setText("Nombre Jugador 2");
 
         lblP4.setBackground(new java.awt.Color(255, 255, 255));
         lblP4.setFont(new java.awt.Font("Century Gothic", 2, 14)); // NOI18N
-        lblP4.setForeground(new java.awt.Color(0, 0, 0));
         lblP4.setText("Nombre Jugador 4");
 
         lblP3.setBackground(new java.awt.Color(255, 255, 255));
         lblP3.setFont(new java.awt.Font("Century Gothic", 2, 14)); // NOI18N
-        lblP3.setForeground(new java.awt.Color(0, 0, 0));
         lblP3.setText("Nombre Jugador 3");
-
-        txtP1.setBackground(new java.awt.Color(255, 255, 255));
-
-        txtP2.setBackground(new java.awt.Color(255, 255, 255));
-
-        txtP3.setBackground(new java.awt.Color(255, 255, 255));
-
-        txtP4.setBackground(new java.awt.Color(255, 255, 255));
 
         btnStart.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         btnStart.setText("Iniciar");
@@ -238,6 +230,23 @@ public class Jugadores extends javax.swing.JFrame {
                 .addGap(27, 27, 27))
         );
 
+        jButton1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jButton1.setText("Tirar Los Dados");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        lbldadouno.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbldadouno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Dados/3.png"))); // NOI18N
+
+        lbldadodos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbldadodos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Dados/2.png"))); // NOI18N
+
+        ResultadoDados.setEditable(false);
+        ResultadoDados.setFont(new java.awt.Font("Cambria Math", 0, 14)); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -248,18 +257,42 @@ public class Jugadores extends javax.swing.JFrame {
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_return, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(477, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(lbldadouno)
+                        .addGap(37, 37, 37)
+                        .addComponent(lbldadodos))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(ResultadoDados))))
+                .addContainerGap(331, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(btn_return, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(64, 64, 64)
+                        .addComponent(btn_return, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton1)
+                        .addGap(9, 9, 9)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbldadodos)
+                            .addComponent(lbldadouno))
+                        .addGap(18, 18, 18)
+                        .addComponent(ResultadoDados, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(117, Short.MAX_VALUE))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 600));
@@ -347,6 +380,43 @@ public class Jugadores extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnStartMouseClicked
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // Generar tiro de los dados
+        // Numeros generados de manera aleatoria
+        int dado1 = (int)(Math.random()*6)+1;
+        int dado2 = (int)(Math.random()*6)+1;
+        
+        // Generamos los iconos a partir de imagenes
+        Icon uno = new javax.swing.ImageIcon(getClass().getResource("/Dados/1.png"));
+        Icon dos = new javax.swing.ImageIcon(getClass().getResource("/Dados/2.png"));
+        Icon tres = new javax.swing.ImageIcon(getClass().getResource("/Dados/3.png"));
+        Icon cuatro = new javax.swing.ImageIcon(getClass().getResource("/Dados/4.png"));
+        Icon cinco = new javax.swing.ImageIcon(getClass().getResource("/Dados/5.png"));
+        Icon seis = new javax.swing.ImageIcon(getClass().getResource("/Dados/6.png"));
+        
+        // Mostramos los dados al usuario
+        switch(dado1){
+            case 1: lbldadouno.setIcon(uno); break;
+            case 2: lbldadouno.setIcon(dos); break;
+            case 3: lbldadouno.setIcon(tres); break;
+            case 4: lbldadouno.setIcon(cuatro); break;
+            case 5: lbldadouno.setIcon(cinco); break;
+            case 6: lbldadouno.setIcon(seis); break;
+        }
+        switch(dado2){
+            case 1: lbldadodos.setIcon(uno); break;
+            case 2: lbldadodos.setIcon(dos); break;
+            case 3: lbldadodos.setIcon(tres); break;
+            case 4: lbldadodos.setIcon(cuatro); break;
+            case 5: lbldadodos.setIcon(cinco); break;
+            case 6: lbldadodos.setIcon(seis); break;
+        }
+        // Mostramos por texto el resultado de la tirada
+        int resultado = 0;
+        resultado = dado1 + dado2;
+        ResultadoDados.setText("Obtuviste: "+resultado);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -386,9 +456,11 @@ public class Jugadores extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField ResultadoDados;
     private javax.swing.JButton btnStart;
     private javax.swing.JButton btn_return;
     private javax.swing.JComboBox<String> cbxPlayers;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -401,6 +473,8 @@ public class Jugadores extends javax.swing.JFrame {
     private javax.swing.JLabel lblP2;
     private javax.swing.JLabel lblP3;
     private javax.swing.JLabel lblP4;
+    private javax.swing.JLabel lbldadodos;
+    private javax.swing.JLabel lbldadouno;
     private javax.swing.JTextField txtP1;
     private javax.swing.JTextField txtP2;
     private javax.swing.JTextField txtP3;
