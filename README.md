@@ -19,3 +19,6 @@ El proyecto debe de tener las siguientes consideraciones:
   - Debe ser completamente implementado con clases.
   - El desarrollo de la interfaz, va a depender directamente del grupo.
   - Fecha de entrega: 23 de Abril de 2021
+
+
+- Eric 
