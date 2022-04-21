@@ -70,7 +70,7 @@ public class Principal extends javax.swing.JFrame {
         btn_startGame.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
         btn_startGame.setForeground(new java.awt.Color(255, 255, 255));
         btn_startGame.setText("Iniciar Juego");
-        btn_startGame.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btn_startGame.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_startGame.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_startGameActionPerformed(evt);
@@ -81,7 +81,7 @@ public class Principal extends javax.swing.JFrame {
         btn_developers.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
         btn_developers.setForeground(new java.awt.Color(255, 255, 255));
         btn_developers.setText("Desarrolladores");
-        btn_developers.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btn_developers.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_developers.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_developersMouseClicked(evt);
@@ -97,7 +97,7 @@ public class Principal extends javax.swing.JFrame {
         btn_documentation.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
         btn_documentation.setForeground(new java.awt.Color(255, 255, 255));
         btn_documentation.setText("Documentación");
-        btn_documentation.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btn_documentation.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_documentation.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_documentationMouseClicked(evt);
@@ -108,7 +108,7 @@ public class Principal extends javax.swing.JFrame {
         btn_exit.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
         btn_exit.setForeground(new java.awt.Color(255, 255, 255));
         btn_exit.setText("Salir");
-        btn_exit.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btn_exit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_exit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_exitMouseClicked(evt);

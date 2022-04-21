@@ -67,7 +67,7 @@ public class Developers extends javax.swing.JFrame {
         btn_return.setText("Regresar");
         btn_return.setToolTipText("");
         btn_return.setActionCommand("Regresar al inicio");
-        btn_return.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btn_return.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_return.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_returnMouseClicked(evt);
@@ -160,7 +160,7 @@ public class Developers extends javax.swing.JFrame {
         btn_startGame.setText("¡Jugar!");
         btn_startGame.setToolTipText("");
         btn_startGame.setActionCommand("Regresar al inicio");
-        btn_startGame.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btn_startGame.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_startGame.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_startGameMouseClicked(evt);
