@@ -1,19 +1,20 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.app;
 
 /**
  *
- * @author Ferch
+ * 
  */
 public class Position {
-    int position;
-    int x = 0;
-    int y = 0;
+    int position = 0;
+    int x ;
+    int y ;
+    int puntaje ;
+    int totalMovimiento ;
+
+    
     public Position() {
-        
+       
     }
 
     public int getPosition() {
@@ -23,22 +24,25 @@ public class Position {
     public void setPosition(int position) {
         this.position = position;
     }
-    
-    public int getY(){
-        if(position <=6){
-            y = 410;
-        }else if(position > 6 && position <=12){
-            y = 310;
-        }else if(position > 12 && position <=18){
-            y = 210;
-        }else if(position >18 && position <=24){
-            y = 110;
-        }else if(position >24 && position <=30){
-            y = 10;
-        }
-        return y;
+
+    public int getPuntaje() {
+        return puntaje;
     }
+
+    public void setPuntaje(int puntaje) {
+        this.puntaje = puntaje;
+    }
+    
+    public int posicionFicha(int valorDado){        
+        totalMovimiento = puntaje + valorDado;
+        position = totalMovimiento; 
+        
+        return position;
+    }
+    
     public int getX(){
+        int x1 = 0;
+              position = x1+position;
         if(position == 1 || position == 12 || position == 13 || position == 24 || position == 25){
             x = 10;
         }else if(position == 2 || position == 11 || position == 14 || position == 23 || position == 26){
@@ -54,4 +58,27 @@ public class Position {
         }
         return x;
     }
+    
+    public int getY(){
+        int y1 = 0;
+                position= y1+position;
+        if(position <=6){
+            y = 410;
+        }else if(position > 6 && position <=12){
+            y = 310;
+        }else if(position > 12 && position <=18){
+            y = 210;
+        }else if(position >18 && position <=24){
+            y = 110;
+        }else if(position >24 && position <=30){
+            y = 10;
+        }
+        return y;
+    }
+    
+    
+    
+    
+ 
+    
 }

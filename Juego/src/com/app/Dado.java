@@ -3,7 +3,7 @@ package com.app;
 
 /**
  *
- * @author mario
+ * 
  */
 public class Dado {      
     
@@ -12,5 +12,5 @@ public class Dado {
         return dado;
     }   
     
-    
+        
 }

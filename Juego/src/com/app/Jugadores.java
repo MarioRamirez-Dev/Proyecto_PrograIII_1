@@ -25,6 +25,16 @@ public class Jugadores extends javax.swing.JFrame {
     public static Jugador player4 = new Jugador();
     public static Dado dado1 = new Dado();
     public static Dado dado2 = new Dado();
+    public static Position PositionF1 = new Position();
+    //Generamos los iconos a partir de imagenes
+    Icon uno = new javax.swing.ImageIcon(getClass().getResource("/Dados/1.png"));
+    Icon dos = new javax.swing.ImageIcon(getClass().getResource("/Dados/2.png"));
+    Icon tres = new javax.swing.ImageIcon(getClass().getResource("/Dados/3.png"));
+    Icon cuatro = new javax.swing.ImageIcon(getClass().getResource("/Dados/4.png"));
+    Icon cinco = new javax.swing.ImageIcon(getClass().getResource("/Dados/5.png"));
+    Icon seis = new javax.swing.ImageIcon(getClass().getResource("/Dados/6.png"));
+    
+     
     
     boolean turn1 = false;
     boolean turn2 = false;
@@ -32,8 +42,10 @@ public class Jugadores extends javax.swing.JFrame {
     boolean turn4 = false;
     boolean fin = false;
     int resultado;
-    int x = 10;
-    int y = 410;
+    int x1, y1;
+    int s;
+
+    
     /**
      * Creates new form auxiliar
      */
@@ -56,6 +68,10 @@ public class Jugadores extends javax.swing.JFrame {
         ficha2.setEnabled(false);
         ficha3.setEnabled(false);
         ficha4.setEnabled(false);
+        
+        
+            
+        
        
     }
 
@@ -95,11 +111,12 @@ public class Jugadores extends javax.swing.JFrame {
         lbldadodos = new javax.swing.JLabel();
         lbl_obtuviste = new javax.swing.JLabel();
         lbl_resultadoDados = new javax.swing.JLabel();
+        lbl_temporal = new javax.swing.JLabel();
         bg_tablero = new javax.swing.JPanel();
         ficha3 = new javax.swing.JLabel();
         ficha2 = new javax.swing.JLabel();
-        ficha1 = new javax.swing.JLabel();
         ficha4 = new javax.swing.JLabel();
+        ficha1 = new javax.swing.JLabel();
         tablero = new javax.swing.JLabel();
         btnMov = new javax.swing.JButton();
 
@@ -323,6 +340,8 @@ public class Jugadores extends javax.swing.JFrame {
 
         lbl_resultadoDados.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
 
+        lbl_temporal.setText("jLabel4");
+
         javax.swing.GroupLayout panel_DadosLayout = new javax.swing.GroupLayout(panel_Dados);
         panel_Dados.setLayout(panel_DadosLayout);
         panel_DadosLayout.setHorizontalGroup(
@@ -330,13 +349,15 @@ public class Jugadores extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_DadosLayout.createSequentialGroup()
                 .addGroup(panel_DadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel_DadosLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lbl_obtuviste)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(panel_DadosLayout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addComponent(btn_LanzarDado, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(panel_DadosLayout.createSequentialGroup()
+                        .addGap(63, 63, 63)
+                        .addComponent(lbl_temporal)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lbl_obtuviste)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(panel_DadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel_DadosLayout.createSequentialGroup()
                         .addComponent(lbldadouno)
@@ -353,11 +374,17 @@ public class Jugadores extends javax.swing.JFrame {
                     .addComponent(lbldadodos)
                     .addComponent(lbldadouno)
                     .addComponent(btn_LanzarDado, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panel_DadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbl_obtuviste, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbl_resultadoDados))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addGroup(panel_DadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panel_DadosLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panel_DadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbl_obtuviste, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbl_resultadoDados))
+                        .addContainerGap(29, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_DadosLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lbl_temporal)
+                        .addGap(15, 15, 15))))
         );
 
         bg_tablero.setBackground(new java.awt.Color(204, 204, 255));
@@ -369,11 +396,16 @@ public class Jugadores extends javax.swing.JFrame {
         ficha2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/ficha2.png"))); // NOI18N
         bg_tablero.add(ficha2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 510, -1, -1));
 
-        ficha1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/ficha1.png"))); // NOI18N
-        bg_tablero.add(ficha1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 510, -1, -1));
-
         ficha4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/ficha4.png"))); // NOI18N
         bg_tablero.add(ficha4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 510, -1, -1));
+
+        ficha1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/ficha1.png"))); // NOI18N
+        ficha1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ficha1MouseClicked(evt);
+            }
+        });
+        bg_tablero.add(ficha1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 510, -1, -1));
 
         tablero.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/Tablero.png"))); // NOI18N
         tablero.setToolTipText("");
@@ -421,7 +453,7 @@ public class Jugadores extends javax.swing.JFrame {
                         .addComponent(panel_Dados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnMov))
-                    .addComponent(bg_tablero, javax.swing.GroupLayout.PREFERRED_SIZE, 598, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(bg_tablero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 28, Short.MAX_VALUE))
         );
 
@@ -433,60 +465,44 @@ public class Jugadores extends javax.swing.JFrame {
     private void btn_LanzarDadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_LanzarDadoActionPerformed
         // Generar tiro de los dados
         int d1 = dado1.lanzarDado();
-        int d2 = dado2.lanzarDado();
+        int d2 = dado2.lanzarDado();      
         
-        // Generamos los iconos a partir de imagenes
-        Icon uno = new javax.swing.ImageIcon(getClass().getResource("/Dados/1.png"));
-        Icon dos = new javax.swing.ImageIcon(getClass().getResource("/Dados/2.png"));
-        Icon tres = new javax.swing.ImageIcon(getClass().getResource("/Dados/3.png"));
-        Icon cuatro = new javax.swing.ImageIcon(getClass().getResource("/Dados/4.png"));
-        Icon cinco = new javax.swing.ImageIcon(getClass().getResource("/Dados/5.png"));
-        Icon seis = new javax.swing.ImageIcon(getClass().getResource("/Dados/6.png"));
-
-        if(lblNp1.getText().length() == 0 && lblNp2.getText().length() == 0){
-
+        
+        // Mostramos los dados al usuario
+        switch(d1){
+            case 1: lbldadouno.setIcon(uno); break;
+            case 2: lbldadouno.setIcon(dos); break;
+            case 3: lbldadouno.setIcon(tres); break;
+            case 4: lbldadouno.setIcon(cuatro); break;
+            case 5: lbldadouno.setIcon(cinco); break;
+            case 6: lbldadouno.setIcon(seis); break;
         }
-        else{
-            // Mostramos los dados al usuario
-            switch(d1){
-                case 1: lbldadouno.setIcon(uno); break;
-                case 2: lbldadouno.setIcon(dos); break;
-                case 3: lbldadouno.setIcon(tres); break;
-                case 4: lbldadouno.setIcon(cuatro); break;
-                case 5: lbldadouno.setIcon(cinco); break;
-                case 6: lbldadouno.setIcon(seis); break;
-            }
-            switch(d2){
-                case 1: lbldadodos.setIcon(uno); break;
-                case 2: lbldadodos.setIcon(dos); break;
-                case 3: lbldadodos.setIcon(tres); break;
-                case 4: lbldadodos.setIcon(cuatro); break;
-                case 5: lbldadodos.setIcon(cinco); break;
-                case 6: lbldadodos.setIcon(seis); break;
-            }
-            // Mostramos por texto el resultado de la tirada
-
-            resultado = d1 + d2;
-            lbl_obtuviste.setText("Obtuviste: ");
-            lbl_resultadoDados.setText(" "+ resultado +" ");
-        }      
-        Position PositionF1 = new Position();
-        PositionF1.setPosition(resultado);
-        x = PositionF1.getX();
-        y = PositionF1.getY();
-        ficha1.setLocation(x, y);
+        switch(d2){
+            case 1: lbldadodos.setIcon(uno); break;
+            case 2: lbldadodos.setIcon(dos); break;
+            case 3: lbldadodos.setIcon(tres); break;
+            case 4: lbldadodos.setIcon(cuatro); break;
+            case 5: lbldadodos.setIcon(cinco); break;
+            case 6: lbldadodos.setIcon(seis); break;
+        }
+        // Mostramos por texto el resultado de la tirada
+        resultado = d1 + d2;
+        lbl_obtuviste.setText("Obtuviste: ");
+        lbl_resultadoDados.setText(""+resultado);
+        
+       
+        
+        
+        
     }//GEN-LAST:event_btn_LanzarDadoActionPerformed
-    private void mover(){
-        Position PositionF1 = new Position();
-        PositionF1.setPosition(resultado);
-        x = PositionF1.getX();
-        y = PositionF1.getY();
-        ficha1.setLocation(x, y);
-    }
+    
+    
     private void btn_LanzarDadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_LanzarDadoMouseClicked
-
+        
     }//GEN-LAST:event_btn_LanzarDadoMouseClicked
 
+    
+    
     private void btn_returnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_returnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_returnActionPerformed
@@ -583,8 +599,22 @@ public class Jugadores extends javax.swing.JFrame {
     }//GEN-LAST:event_cbxPlayersActionPerformed
 
     private void btnMovActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMovActionPerformed
-       mover();
+        
     }//GEN-LAST:event_btnMovActionPerformed
+
+    private void ficha1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ficha1MouseClicked
+        
+        int res = 0;
+        int label = res + Integer.parseInt(lbl_resultadoDados.getText());
+        
+        PositionF1.posicionFicha(label);
+            x1 = PositionF1.getX();
+            y1 = PositionF1.getY();
+            
+        if(x1 > 0&& y1>0){
+            ficha1.setLocation(x1,y1);   
+        }
+    }//GEN-LAST:event_ficha1MouseClicked
 
     //Metodo para centrar la ventana
     public static void centreWindow(Window frame) {
@@ -661,6 +691,7 @@ public class Jugadores extends javax.swing.JFrame {
     private javax.swing.JLabel lblP4;
     private javax.swing.JLabel lbl_obtuviste;
     private javax.swing.JLabel lbl_resultadoDados;
+    private javax.swing.JLabel lbl_temporal;
     private javax.swing.JLabel lbldadodos;
     private javax.swing.JLabel lbldadouno;
     private javax.swing.JPanel panel_Dados;
