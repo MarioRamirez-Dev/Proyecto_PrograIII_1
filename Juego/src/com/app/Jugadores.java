@@ -8,6 +8,8 @@ import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.Window;
+import java.util.HashSet;
+import java.util.Set;
 import javax.swing.Icon;
 import javax.swing.JOptionPane;
 
@@ -23,7 +25,15 @@ public class Jugadores extends javax.swing.JFrame {
     public static Jugador player4 = new Jugador();
     public static Dado dado1 = new Dado();
     public static Dado dado2 = new Dado();
-     
+    
+    boolean turn1 = false;
+    boolean turn2 = false;
+    boolean turn3 = false;
+    boolean turn4 = false;
+    boolean fin = false;
+    int resultado;
+    int x = 10;
+    int y = 410;
     /**
      * Creates new form auxiliar
      */
@@ -91,6 +101,7 @@ public class Jugadores extends javax.swing.JFrame {
         ficha1 = new javax.swing.JLabel();
         ficha4 = new javax.swing.JLabel();
         tablero = new javax.swing.JLabel();
+        btnMov = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Juego");
@@ -135,7 +146,7 @@ public class Jugadores extends javax.swing.JFrame {
         btnStart.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         btnStart.setForeground(new java.awt.Color(255, 255, 255));
         btnStart.setText("Iniciar Juego");
-        btnStart.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnStart.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnStart.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnStartMouseClicked(evt);
@@ -220,7 +231,7 @@ public class Jugadores extends javax.swing.JFrame {
         btn_return.setText("Regresar");
         btn_return.setToolTipText("");
         btn_return.setActionCommand("Regresar al inicio");
-        btn_return.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_return.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_return.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_returnMouseClicked(evt);
@@ -290,7 +301,7 @@ public class Jugadores extends javax.swing.JFrame {
         btn_LanzarDado.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         btn_LanzarDado.setForeground(new java.awt.Color(255, 255, 255));
         btn_LanzarDado.setText("Tirar Los Dados");
-        btn_LanzarDado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_LanzarDado.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_LanzarDado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_LanzarDadoMouseClicked(evt);
@@ -368,17 +379,29 @@ public class Jugadores extends javax.swing.JFrame {
         tablero.setToolTipText("");
         bg_tablero.add(tablero, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 500));
 
+        btnMov.setText("Mover Ficha 1");
+        btnMov.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMovActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(panel_Dados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_return, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(panel_nombreJugadores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panel_ingresoJugadores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(panel_Dados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btn_return, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(panel_nombreJugadores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(panel_ingresoJugadores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(130, 130, 130)
+                        .addComponent(btnMov)))
                 .addGap(18, 18, 18)
                 .addComponent(bg_tablero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(20, Short.MAX_VALUE))
@@ -395,9 +418,11 @@ public class Jugadores extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(panel_nombreJugadores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(panel_Dados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(panel_Dados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnMov))
                     .addComponent(bg_tablero, javax.swing.GroupLayout.PREFERRED_SIZE, 598, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 28, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1030, 650));
@@ -409,8 +434,7 @@ public class Jugadores extends javax.swing.JFrame {
         // Generar tiro de los dados
         int d1 = dado1.lanzarDado();
         int d2 = dado2.lanzarDado();
-        int resultado = 0;
-
+        
         // Generamos los iconos a partir de imagenes
         Icon uno = new javax.swing.ImageIcon(getClass().getResource("/Dados/1.png"));
         Icon dos = new javax.swing.ImageIcon(getClass().getResource("/Dados/2.png"));
@@ -445,11 +469,20 @@ public class Jugadores extends javax.swing.JFrame {
             resultado = d1 + d2;
             lbl_obtuviste.setText("Obtuviste: ");
             lbl_resultadoDados.setText(" "+ resultado +" ");
-
-        }
-
+        }      
+        Position PositionF1 = new Position();
+        PositionF1.setPosition(resultado);
+        x = PositionF1.getX();
+        y = PositionF1.getY();
+        ficha1.setLocation(x, y);
     }//GEN-LAST:event_btn_LanzarDadoActionPerformed
-
+    private void mover(){
+        Position PositionF1 = new Position();
+        PositionF1.setPosition(resultado);
+        x = PositionF1.getX();
+        y = PositionF1.getY();
+        ficha1.setLocation(x, y);
+    }
     private void btn_LanzarDadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_LanzarDadoMouseClicked
 
     }//GEN-LAST:event_btn_LanzarDadoMouseClicked
@@ -549,6 +582,10 @@ public class Jugadores extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cbxPlayersActionPerformed
 
+    private void btnMovActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMovActionPerformed
+       mover();
+    }//GEN-LAST:event_btnMovActionPerformed
+
     //Metodo para centrar la ventana
     public static void centreWindow(Window frame) {
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
@@ -601,6 +638,7 @@ public class Jugadores extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg_tablero;
+    private javax.swing.JButton btnMov;
     private javax.swing.JButton btnStart;
     private javax.swing.JButton btn_LanzarDado;
     private javax.swing.JButton btn_return;
