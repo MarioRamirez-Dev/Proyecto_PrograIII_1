@@ -10,8 +10,12 @@ package com.app;
  */
 public class Jugador {
     private String nombre;
+    private int position;
+    private int positionActual = 0;
+    private int positionfinal;
 
     public Jugador() {
+        
     }
 
     public String getNombre() {
@@ -20,5 +24,30 @@ public class Jugador {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }    
+
+    public void setPosition(int position) {
+        this.position = position;
+    }    
+    
+    
+    public int establecerPosicionFinal(){  
+        int pA;
+        pA = establecerPosicionActual();
+        
+        positionfinal = pA+position;        
+        return positionfinal;        
     }
+    
+    
+    
+    public int establecerPosicionActual(){        
+        positionActual = positionActual+position;
+        return positionActual;
+    }
+    
+    
+    
+    
+    
 }
