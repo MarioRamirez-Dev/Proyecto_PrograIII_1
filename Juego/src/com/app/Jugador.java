@@ -10,9 +10,8 @@ package com.app;
  */
 public class Jugador {
     private String nombre;
-    private int position;
-    private int positionActual = 0;
-    private int positionfinal;
+    private int position = 0;
+    private int posicionAnterior = 0;
 
     public Jugador() {
         
@@ -26,25 +25,21 @@ public class Jugador {
         this.nombre = nombre;
     }    
 
-    public void setPosition(int position) {
+     public void setPosition(int position) {
         this.position = position;
     }    
-    
-    
-    public int establecerPosicionFinal(){  
-        int pA;
-        pA = establecerPosicionActual();
-        
-        positionfinal = pA+position;        
-        return positionfinal;        
+    public int getPosition(){
+        return position;
+    }
+
+    public int getPosicionAnterior() {
+        return posicionAnterior;
+    }
+
+    public void setPosicionAnterior(int posicionAnterior) {
+        this.posicionAnterior = posicionAnterior;
     }
     
-    
-    
-    public int establecerPosicionActual(){        
-        positionActual = positionActual+position;
-        return positionActual;
-    }
     
     
     

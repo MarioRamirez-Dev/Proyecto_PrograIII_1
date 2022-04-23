@@ -22,8 +22,7 @@ public class Jugadores extends javax.swing.JFrame {
     public static Jugador player3 = new Jugador();
     public static Jugador player4 = new Jugador();
     public static Dado dado1 = new Dado();
-    public static Dado dado2 = new Dado();
-    public static Position PositionF1 = new Position();
+
     //Generamos los iconos a partir de imagenes
     Icon uno = new javax.swing.ImageIcon(getClass().getResource("/Dados/1.png"));
     Icon dos = new javax.swing.ImageIcon(getClass().getResource("/Dados/2.png"));
@@ -38,12 +37,13 @@ public class Jugadores extends javax.swing.JFrame {
     Icon jugador4 = new javax.swing.ImageIcon(getClass().getResource("/com/images/ficha4.png"));
      
     
-    boolean turn1 = false;
+    boolean turn1 = true;
     boolean turn2 = false;
     boolean turn3 = false;
     boolean turn4 = false;
     boolean fin = false;
     int jugadores;
+    int posicionActual = 0;
     int posicionGanadora = 30;
     
     
@@ -111,7 +111,6 @@ public class Jugadores extends javax.swing.JFrame {
         panel_Dados = new javax.swing.JPanel();
         btn_LanzarDado = new javax.swing.JButton();
         lbldadouno = new javax.swing.JLabel();
-        lbldadodos = new javax.swing.JLabel();
         lbl_obtuviste = new javax.swing.JLabel();
         lbl_resultadoDados = new javax.swing.JLabel();
         ficha3 = new javax.swing.JLabel();
@@ -149,6 +148,10 @@ public class Jugadores extends javax.swing.JFrame {
         position29 = new javax.swing.JLabel();
         position30 = new javax.swing.JLabel();
         Tablero = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Juego");
@@ -205,7 +208,7 @@ public class Jugadores extends javax.swing.JFrame {
         btnStart.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         btnStart.setForeground(new java.awt.Color(255, 255, 255));
         btnStart.setText("Iniciar Juego");
-        btnStart.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnStart.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnStart.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnStartMouseClicked(evt);
@@ -230,7 +233,7 @@ public class Jugadores extends javax.swing.JFrame {
         btn_return.setText("Regresar");
         btn_return.setToolTipText("");
         btn_return.setActionCommand("Regresar al inicio");
-        btn_return.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btn_return.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_return.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_returnMouseClicked(evt);
@@ -259,7 +262,7 @@ public class Jugadores extends javax.swing.JFrame {
 
         lblNp4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         lblNp4.setText("JUGADOR 4");
-        panel_nombreJugadores.add(lblNp4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, -1, -1));
+        panel_nombreJugadores.add(lblNp4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
@@ -274,8 +277,8 @@ public class Jugadores extends javax.swing.JFrame {
         btn_LanzarDado.setBackground(new java.awt.Color(153, 153, 255));
         btn_LanzarDado.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         btn_LanzarDado.setForeground(new java.awt.Color(255, 255, 255));
-        btn_LanzarDado.setText("Tirar Los Dados");
-        btn_LanzarDado.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btn_LanzarDado.setText("Tirar Dado");
+        btn_LanzarDado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_LanzarDado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_LanzarDadoMouseClicked(evt);
@@ -286,15 +289,11 @@ public class Jugadores extends javax.swing.JFrame {
                 btn_LanzarDadoActionPerformed(evt);
             }
         });
-        panel_Dados.add(btn_LanzarDado, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 35, 135, 36));
+        panel_Dados.add(btn_LanzarDado, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 150, 40));
 
         lbldadouno.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbldadouno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Dados/3.png"))); // NOI18N
-        panel_Dados.add(lbldadouno, new org.netbeans.lib.awtextra.AbsoluteConstraints(238, 35, -1, -1));
-
-        lbldadodos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbldadodos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Dados/2.png"))); // NOI18N
-        panel_Dados.add(lbldadodos, new org.netbeans.lib.awtextra.AbsoluteConstraints(274, 35, -1, -1));
+        panel_Dados.add(lbldadouno, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, 100, 70));
 
         lbl_obtuviste.setText("Obtuviste:");
         panel_Dados.add(lbl_obtuviste, new org.netbeans.lib.awtextra.AbsoluteConstraints(178, 77, -1, 23));
@@ -305,7 +304,7 @@ public class Jugadores extends javax.swing.JFrame {
         jPanel1.add(panel_Dados, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 460, 340, 130));
 
         ficha3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/ficha3.png"))); // NOI18N
-        jPanel1.add(ficha3, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 540, -1, -1));
+        jPanel1.add(ficha3, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 540, -1, -1));
 
         ficha1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/ficha1.png"))); // NOI18N
         ficha1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -313,13 +312,13 @@ public class Jugadores extends javax.swing.JFrame {
                 ficha1MouseClicked(evt);
             }
         });
-        jPanel1.add(ficha1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 540, -1, -1));
+        jPanel1.add(ficha1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 540, -1, -1));
 
         ficha2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/ficha2.png"))); // NOI18N
-        jPanel1.add(ficha2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 540, -1, -1));
+        jPanel1.add(ficha2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 540, -1, -1));
 
         ficha4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/ficha4.png"))); // NOI18N
-        jPanel1.add(ficha4, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 540, -1, -1));
+        jPanel1.add(ficha4, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 540, -1, -1));
         jPanel1.add(position1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 440, -1, -1));
         jPanel1.add(position2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 440, -1, -1));
         jPanel1.add(position3, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 440, -1, -1));
@@ -354,6 +353,26 @@ public class Jugadores extends javax.swing.JFrame {
         Tablero.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/Tablero.png"))); // NOI18N
         jPanel1.add(Tablero, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 30, -1, -1));
 
+        jLabel4.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setText("Jugador 4");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 630, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setText("Jugador 1");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 630, -1, -1));
+
+        jLabel6.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel6.setText("Jugador 2");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 630, -1, -1));
+
+        jLabel7.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setText("Jugador 3");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 630, -1, -1));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1030, 650));
 
         pack();
@@ -361,18 +380,9 @@ public class Jugadores extends javax.swing.JFrame {
 
     private void btn_LanzarDadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_LanzarDadoActionPerformed
         // Generar tiro de los dados
-        int d1 = dado1.lanzarDado();
-        int d2 = dado2.lanzarDado(); 
-        int resultado;
-        int posicionInicial, posicionActual = 0;       
-
-       if(jugadores >= 2){
-        
-           turn1 = false;
-           turn2 = false;
-           
-           
-           
+        int d1 = dado1.lanzarDado();        
+        int posicionInicial;             
+       
         // Mostramos los dados al usuario
         switch(d1){
             case 1: lbldadouno.setIcon(uno); break;
@@ -381,31 +391,271 @@ public class Jugadores extends javax.swing.JFrame {
             case 4: lbldadouno.setIcon(cuatro); break;
             case 5: lbldadouno.setIcon(cinco); break;
             case 6: lbldadouno.setIcon(seis); break;
-        }
-        switch(d2){
-            case 1: lbldadodos.setIcon(uno); break;
-            case 2: lbldadodos.setIcon(dos); break;
-            case 3: lbldadodos.setIcon(tres); break;
-            case 4: lbldadodos.setIcon(cuatro); break;
-            case 5: lbldadodos.setIcon(cinco); break;
-            case 6: lbldadodos.setIcon(seis); break;
-        }
+        }       
         
         // Mostramos por texto el resultado de la tirada
-        resultado = d1 + d2;
+        int resultado = d1 ;       
+        
         lbl_obtuviste.setText("Obtuviste: ");
-        lbl_resultadoDados.setText(""+resultado);        
-        player1.setPosition(resultado);
+        lbl_resultadoDados.setText(""+resultado); 
         
         
-        posicionActual = player1.establecerPosicionFinal();
-        setPositionsJ1(posicionActual);
-
+        String NumPlayers = cbxPlayers.getSelectedItem().toString();
+        jugadores = Integer.parseInt(NumPlayers);
+        
+         int newPosition = 0;
+         int antigua1 = player1.getPosicionAnterior();
+         int antigua2 = player2.getPosicionAnterior();
+         int antigua3 = player3.getPosicionAnterior();
+         int antigua4 = player4.getPosicionAnterior();
+         
+         
+         if(jugadores == 2){
+           //Lanza objeto 1
+           if((player1.getPosition()+ resultado)<30 && (player2.getPosition()+ resultado)<30){
+                if(turn1 == true && turn2 == false && turn3 == false && turn4 == false){
+                    newPosition = player1.getPosition() + resultado;
+                    if(newPosition == 4)
+                        player1.setPosition(16);
+                    else if(newPosition == 13)
+                        player1.setPosition(23);
+                    else if(newPosition == 21)
+                        player1.setPosition(27);
+                    else if(newPosition == 20)
+                        player1.setPosition(7);
+                    else if(newPosition == 22)
+                        player1.setPosition(11);
+                    else if(newPosition == 26)
+                        player1.setPosition(24);
+                    else
+                        player1.setPosition(newPosition);
+                    turn1 = false;
+                    turn2 = true;
+                    int pos = player1.getPosition();
+                    setPositionsJ1_(antigua1);
+                    setPositionsJ1(pos);
+                    player1.setPosicionAnterior(pos);                   
+                }else if(turn2 == true && turn1 == false&& turn3 == false && turn4 == false){             
+                    newPosition = player2.getPosition() + resultado;
+                    if(newPosition == 4)
+                        player2.setPosition(16);
+                    else if(newPosition == 13)
+                        player2.setPosition(23);
+                    else if(newPosition == 21)
+                        player2.setPosition(27);
+                    else if(newPosition == 20)
+                        player2.setPosition(7);
+                    else if(newPosition == 22)
+                        player2.setPosition(11);
+                    else if(newPosition == 26)
+                        player2.setPosition(24);
+                    else
+                        player2.setPosition(newPosition);
+                    
+                    turn1 = true;
+                    turn2 = false;                    
+                    int pos = player2.getPosition();
+                    setPositionsJ2_(antigua2);
+                    setPositionsJ2(pos);
+                    player2.setPosicionAnterior(pos);
+                }
+                
+           }else{
+               String winner = "";
+               if (player1.getPosition()> player2.getPosition()){
+                   winner = player1.getNombre();
+               }else{
+                   winner = player2.getNombre();
+               }
+               JOptionPane.showMessageDialog(null, winner);
+           }
+       } else if(jugadores == 3){
+           if((player1.getPosition()+ resultado)<30 && (player2.getPosition()+ resultado)<30 && (player3.getPosition()+ resultado)<30){          
+                if(turn1 == true && turn2 == false && turn3 == false && turn4 == false){
+                    newPosition = player1.getPosition() + resultado;
+                    if(newPosition == 4)
+                        player1.setPosition(16);
+                    else if(newPosition == 13)
+                        player1.setPosition(23);
+                    else if(newPosition == 21)
+                        player1.setPosition(27);
+                    else if(newPosition == 20)
+                        player1.setPosition(7);
+                    else if(newPosition == 22)
+                        player1.setPosition(11);
+                    else if(newPosition == 26)
+                        player1.setPosition(24);
+                    else
+                        player1.setPosition(newPosition);
+                    
+                    turn1 = false;
+                    turn2 = true;                    
+                    int pos = player1.getPosition();
+                    setPositionsJ1_(antigua1);
+                    setPositionsJ1(pos);
+                    player1.setPosicionAnterior(pos);  
+                }else if(turn2 == true && turn1 == false&& turn3 == false && turn4 == false){
+                    newPosition = player2.getPosition() + resultado;
+                    if(newPosition == 4)
+                        player2.setPosition(16);
+                    else if(newPosition == 13)
+                        player2.setPosition(23);
+                    else if(newPosition == 21)
+                        player2.setPosition(27);
+                    else if(newPosition == 20)
+                        player2.setPosition(7);
+                    else if(newPosition == 22)
+                        player2.setPosition(11);
+                    else if(newPosition == 26)
+                        player2.setPosition(24);
+                    else
+                        player1.setPosition(newPosition);
+                    
+                    turn1 = false;
+                    turn2 = false;                    
+                    turn3 = true;
+                    int pos = player2.getPosition();
+                    setPositionsJ2_(antigua2);
+                    setPositionsJ2(pos);
+                    player2.setPosicionAnterior(pos);
+                }
+                else if(turn2 == false && turn1 == false&& turn3 == true && turn4 == false){
+                    newPosition = player3.getPosition() + resultado;
+                    player3.setPosition(newPosition);
+                    if(newPosition == 4)
+                        player3.setPosition(16);
+                    else if(newPosition == 13)
+                        player3.setPosition(23);
+                    else if(newPosition == 21)
+                        player3.setPosition(27);
+                    else if(newPosition == 20)
+                        player3.setPosition(7);
+                    else if(newPosition == 22)
+                        player3.setPosition(11);
+                    else if(newPosition == 26)
+                        player3.setPosition(24);
+                    else
+                        player3.setPosition(newPosition);
+                    turn1 = true;
+                    turn2 = false; 
+                    turn3 = false;
+                    int pos = player3.getPosition();
+                    setPositionsJ3_(antigua3);
+                    setPositionsJ3(pos);
+                    player3.setPosicionAnterior(pos);
+                }
+                
+           }else{
+               JOptionPane.showMessageDialog(null, "YA HAY GANADOR");
+           }
+       }else if(jugadores == 4){
+            if((player1.getPosition()+ resultado)<30 && (player2.getPosition()+ resultado)<30 && (player3.getPosition()+ resultado)<30 && (player4.getPosition()+ resultado)<30){
+                if(turn1 == true && turn2 == false && turn3 == false && turn4 == false){
+                    newPosition = player1.getPosition() + resultado;
+                    if(newPosition == 4)
+                        player1.setPosition(16);
+                    else if(newPosition == 13)
+                        player1.setPosition(23);
+                    else if(newPosition == 21)
+                        player1.setPosition(27);
+                    else if(newPosition == 20)
+                        player1.setPosition(7);
+                    else if(newPosition == 22)
+                        player1.setPosition(11);
+                    else if(newPosition == 26)
+                        player1.setPosition(24);
+                    else
+                        player1.setPosition(newPosition);
+                    
+                    turn1 = false;
+                    turn2 = true;
+                    
+                    int pos = player1.getPosition();
+                    setPositionsJ1_(antigua1);
+                    setPositionsJ1(pos);
+                    player1.setPosicionAnterior(pos);
+                }else if(turn2 == true && turn1 == false&& turn3 == false && turn4 == false){
+                    newPosition = player2.getPosition() + resultado;
+                    if(newPosition == 4)
+                        player2.setPosition(16);
+                    else if(newPosition == 13)
+                        player2.setPosition(23);
+                    else if(newPosition == 21)
+                        player2.setPosition(27);
+                    else if(newPosition == 20)
+                        player2.setPosition(7);
+                    else if(newPosition == 22)
+                        player2.setPosition(11);
+                    else if(newPosition == 26)
+                        player2.setPosition(24);
+                    else
+                        player2.setPosition(newPosition);
+                    turn1 = false;
+                    turn2 = false;                    
+                    turn3 = true;
+                    int pos = player2.getPosition();
+                    setPositionsJ2_(antigua2);
+                    setPositionsJ2(pos);
+                    player2.setPosicionAnterior(pos);
+                    
+                }else if(turn2 == false && turn1 == false&& turn3 == true && turn4 == false){
+                    newPosition = player3.getPosition() + resultado;
+                    if(newPosition == 4)
+                        player3.setPosition(16);
+                    else if(newPosition == 13)
+                        player3.setPosition(23);
+                    else if(newPosition == 21)
+                        player3.setPosition(27);
+                    else if(newPosition == 20)
+                        player3.setPosition(7);
+                    else if(newPosition == 22)
+                        player3.setPosition(11);
+                    else if(newPosition == 26)
+                        player3.setPosition(24);
+                    else
+                        player3.setPosition(newPosition);
+                    turn1 = false;
+                    turn2 = false; 
+                    turn3 = false;
+                    turn4 = true;
+                    int pos = player3.getPosition();
+                    setPositionsJ3_(antigua3);
+                    setPositionsJ3(pos);
+                    player3.setPosicionAnterior(pos);
+                }
+                else if(turn2 == false && turn1 == false&& turn3 == false && turn4 == true){
+                    newPosition = player4.getPosition() + resultado;
+                    if(newPosition == 4)
+                        player4.setPosition(16);
+                    else if(newPosition == 13)
+                        player4.setPosition(23);
+                    else if(newPosition == 21)
+                        player4.setPosition(27);
+                    else if(newPosition == 20)
+                        player4.setPosition(7);
+                    else if(newPosition == 22)
+                        player4.setPosition(11);
+                    else if(newPosition == 26)
+                        player4.setPosition(24);
+                    else
+                        player4.setPosition(newPosition);
+                    turn1 = true;
+                    turn2 = false; 
+                    turn3 = false;
+                    turn4 = false;
+                    int pos = player4.getPosition();
+                    setPositionsJ4_(antigua4);
+                    setPositionsJ4(pos);
+                    player4.setPosicionAnterior(pos);
+                }
+                
+           }else{
+               JOptionPane.showMessageDialog(null, "YA HAY GANADOR");
+           }
        }
+               
         
-
-        
-        
+       
         
     }//GEN-LAST:event_btn_LanzarDadoActionPerformed
     
@@ -433,7 +683,7 @@ public class Jugadores extends javax.swing.JFrame {
     private void btnStartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnStartMouseClicked
         String nJugadores = cbxPlayers.getSelectedItem().toString();
         int nJ = Integer.parseInt(nJugadores);
-        jugadores = nJ;
+        
         
         String name1 = txtP1.getText().toString();
         String name2 = txtP2.getText().toString();
@@ -583,6 +833,10 @@ public class Jugadores extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblNp1;
     private javax.swing.JLabel lblNp2;
@@ -594,7 +848,6 @@ public class Jugadores extends javax.swing.JFrame {
     private javax.swing.JLabel lblP4;
     private javax.swing.JLabel lbl_obtuviste;
     private javax.swing.JLabel lbl_resultadoDados;
-    private javax.swing.JLabel lbldadodos;
     private javax.swing.JLabel lbldadouno;
     private javax.swing.JPanel panel_Dados;
     private javax.swing.JPanel panel_ingresoJugadores;
@@ -637,9 +890,8 @@ public class Jugadores extends javax.swing.JFrame {
 
     
 
-    public void setPositionsJ1(int res){
-        
-       switch(res){
+    public void setPositionsJ1(int res){       
+        switch(res){
             case 1:                    
                     position1.setIcon(jugador1);                    
                 break;
@@ -649,59 +901,518 @@ public class Jugadores extends javax.swing.JFrame {
                 break;
             case 4: position4.setIcon(jugador1);
                 break;
-            case 5: position5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/ficha1.png")));
+            case 5: position5.setIcon(jugador1);
                 break;
-            case 6: position6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/ficha1.png")));
+            case 6: position6.setIcon(jugador1);
                 break;
-            case 7: position7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/ficha1.png")));
+            case 7: position7.setIcon(jugador1);
                 break;
-            case 8: position8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/ficha1.png")));
+            case 8: position8.setIcon(jugador1);
                 break;
-            case 9: position9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/ficha1.png")));
+            case 9: position9.setIcon(jugador1);
                 break;
-            case 10: position10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/ficha1.png")));
+            case 10: position10.setIcon(jugador1);
                 break;
-            case 11: position11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/ficha1.png")));
+            case 11: position11.setIcon(jugador1);
                 break;
-            case 12: position12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/ficha1.png")));
+            case 12: position12.setIcon(jugador1);
                 break;
-            case 13: position13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/ficha1.png")));
+            case 13: position23.setIcon(jugador1);
                 break;
-            case 14: position14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/ficha1.png")));
+            case 14: position14.setIcon(jugador1);
                 break;
-            case 15: position15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/ficha1.png")));
+            case 15: position15.setIcon(jugador1);
                 break;
-            case 16: position16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/ficha1.png")));
+            case 16: position16.setIcon(jugador1);
                 break;
-            case 17: position17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/ficha1.png")));
+            case 17: position17.setIcon(jugador1);
                 break;
-            case 18: position18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/ficha1.png")));
+            case 18: position18.setIcon(jugador1);
                 break;
-            case 19: position19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/ficha1.png")));
+            case 19: position19.setIcon(jugador1);
                 break;
-            case 20: position20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/ficha1.png")));
+            case 20: position20.setIcon(jugador1);
                 break;
-            case 21: position21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/ficha1.png")));
+            case 21: position21.setIcon(jugador1);
                 break;
-            case 22: position22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/ficha1.png")));
+            case 22: position22.setIcon(jugador1);
                 break;
-            case 23: position23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/ficha1.png")));
+            case 23: position23.setIcon(jugador1);
                 break;
-            case 24: position24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/ficha1.png")));
+            case 24: position24.setIcon(jugador1);
                 break;
-            case 25: position25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/ficha1.png")));
+            case 25: position25.setIcon(jugador1);
                 break;
-            case 26: position26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/ficha1.png")));
+            case 26: position26.setIcon(jugador1);
                 break;
-            case 27: position27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/ficha1.png")));
+            case 27: position27.setIcon(jugador1);
                 break;
-            case 28: position28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/ficha1.png")));
+            case 28: position28.setIcon(jugador1);
                 break;
-            case 29: position29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/ficha1.png")));
+            case 29: position29.setIcon(jugador1);
                 break;
-            case 30: position30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/ficha1.png")));                              
+            case 30: position30.setIcon(jugador1);                              
                 break;
-       }                                         
+       }  
+    }
+    
+    public void setPositionsJ1_(int res){       
+        switch(res){
+            case 1:                    
+                    position1.setIcon(null);                    
+                break;
+            case 2: position2.setIcon(null);
+                break;
+            case 3: position3.setIcon(null);
+                break;
+            case 4: position4.setIcon(null);
+                break;
+            case 5: position5.setIcon(null);
+                break;
+            case 6: position6.setIcon(null);
+                break;
+            case 7: position7.setIcon(null);
+                break;
+            case 8: position8.setIcon(null);
+                break;
+            case 9: position9.setIcon(null);
+                break;
+            case 10: position10.setIcon(null);
+                break;
+            case 11: position11.setIcon(null);
+                break;
+            case 12: position12.setIcon(null);
+                break;
+            case 13: position23.setIcon(null);
+                break;
+            case 14: position14.setIcon(null);
+                break;
+            case 15: position15.setIcon(null);
+                break;
+            case 16: position16.setIcon(null);
+                break;
+            case 17: position17.setIcon(null);
+                break;
+            case 18: position18.setIcon(null);
+                break;
+            case 19: position19.setIcon(null);
+                break;
+            case 20: position20.setIcon(null);
+                break;
+            case 21: position21.setIcon(null);
+                break;
+            case 22: position22.setIcon(null);
+                break;
+            case 23: position23.setIcon(null);
+                break;
+            case 24: position24.setIcon(null);
+                break;
+            case 25: position25.setIcon(null);
+                break;
+            case 26: position26.setIcon(null);
+                break;
+            case 27: position27.setIcon(null);
+                break;
+            case 28: position28.setIcon(null);
+                break;
+            case 29: position29.setIcon(null);
+                break;
+            case 30: position30.setIcon(null);                              
+                break;
+       }  
+    }
+    
+    public void setPositionsJ2(int res){       
+        switch(res){
+            case 1:                    
+                    position1.setIcon(jugador2);                    
+                break;
+            case 2: position2.setIcon(jugador2);
+                break;
+            case 3: position3.setIcon(jugador2);
+                break;
+            case 4: position4.setIcon(jugador2);
+                break;
+            case 5: position5.setIcon(jugador2);
+                break;
+            case 6: position6.setIcon(jugador2);
+                break;
+            case 7: position7.setIcon(jugador2);
+                break;
+            case 8: position8.setIcon(jugador2);
+                break;
+            case 9: position9.setIcon(jugador2);
+                break;
+            case 10: position10.setIcon(jugador2);
+                break;
+            case 11: position11.setIcon(jugador2);
+                break;
+            case 12: position12.setIcon(jugador2);
+                break;
+            case 13: position13.setIcon(jugador2);
+                break;
+            case 14: position14.setIcon(jugador2);
+                break;
+            case 15: position15.setIcon(jugador2);
+                break;
+            case 16: position16.setIcon(jugador2);
+                break;
+            case 17: position17.setIcon(jugador2);
+                break;
+            case 18: position18.setIcon(jugador2);
+                break;
+            case 19: position19.setIcon(jugador2);
+                break;
+            case 20: position20.setIcon(jugador2);
+                break;
+            case 21: position21.setIcon(jugador2);
+                break;
+            case 22: position22.setIcon(jugador2);
+                break;
+            case 23: position23.setIcon(jugador2);
+                break;
+            case 24: position24.setIcon(jugador2);
+                break;
+            case 25: position25.setIcon(jugador2);
+                break;
+            case 26: position26.setIcon(jugador2);
+                break;
+            case 27: position27.setIcon(jugador2);
+                break;
+            case 28: position28.setIcon(jugador2);
+                break;
+            case 29: position29.setIcon(jugador2);
+                break;
+            case 30: position30.setIcon(jugador2);                              
+                break;
+        }
+    }
+    public void setPositionsJ2_(int res){       
+        switch(res){
+            case 1:                    
+                    position1.setIcon(null);                    
+                break;
+            case 2: position2.setIcon(null);
+                break;
+            case 3: position3.setIcon(null);
+                break;
+            case 4: position4.setIcon(null);
+                break;
+            case 5: position5.setIcon(null);
+                break;
+            case 6: position6.setIcon(null);
+                break;
+            case 7: position7.setIcon(null);
+                break;
+            case 8: position8.setIcon(null);
+                break;
+            case 9: position9.setIcon(null);
+                break;
+            case 10: position10.setIcon(null);
+                break;
+            case 11: position11.setIcon(null);
+                break;
+            case 12: position12.setIcon(null);
+                break;
+            case 13: position13.setIcon(null);
+                break;
+            case 14: position14.setIcon(null);
+                break;
+            case 15: position15.setIcon(null);
+                break;
+            case 16: position16.setIcon(null);
+                break;
+            case 17: position17.setIcon(null);
+                break;
+            case 18: position18.setIcon(null);
+                break;
+            case 19: position19.setIcon(null);
+                break;
+            case 20: position20.setIcon(null);
+                break;
+            case 21: position21.setIcon(null);
+                break;
+            case 22: position22.setIcon(null);
+                break;
+            case 23: position23.setIcon(null);
+                break;
+            case 24: position24.setIcon(null);
+                break;
+            case 25: position25.setIcon(null);
+                break;
+            case 26: position26.setIcon(null);
+                break;
+            case 27: position27.setIcon(null);
+                break;
+            case 28: position28.setIcon(null);
+                break;
+            case 29: position29.setIcon(null);
+                break;
+            case 30: position30.setIcon(null);                              
+                break;
+       }  
+    }
+    
+    public void setPositionsJ3(int res){       
+        switch(res){
+            case 1:                    
+                    position1.setIcon(jugador3);                    
+                break;
+            case 2: position2.setIcon(jugador3);
+                break;
+            case 3: position3.setIcon(jugador3);
+                break;
+            case 4: position4.setIcon(jugador3);
+                break;
+            case 5: position5.setIcon(jugador3);
+                break;
+            case 6: position6.setIcon(jugador3);
+                break;
+            case 7: position7.setIcon(jugador3);
+                break;
+            case 8: position8.setIcon(jugador3);
+                break;
+            case 9: position9.setIcon(jugador3);
+                break;
+            case 10: position10.setIcon(jugador3);
+                break;
+            case 11: position11.setIcon(jugador3);
+                break;
+            case 12: position12.setIcon(jugador3);
+                break;
+            case 13: position13.setIcon(jugador3);
+                break;
+            case 14: position14.setIcon(jugador3);
+                break;
+            case 15: position15.setIcon(jugador3);
+                break;
+            case 16: position16.setIcon(jugador3);
+                break;
+            case 17: position17.setIcon(jugador3);
+                break;
+            case 18: position18.setIcon(jugador3);
+                break;
+            case 19: position19.setIcon(jugador3);
+                break;
+            case 20: position20.setIcon(jugador3);
+                break;
+            case 21: position21.setIcon(jugador3);
+                break;
+            case 22: position22.setIcon(jugador3);
+                break;
+            case 23: position23.setIcon(jugador3);
+                break;
+            case 24: position24.setIcon(jugador3);
+                break;
+            case 25: position25.setIcon(jugador3);
+                break;
+            case 26: position26.setIcon(jugador3);
+                break;
+            case 27: position27.setIcon(jugador3);
+                break;
+            case 28: position28.setIcon(jugador3);
+                break;
+            case 29: position29.setIcon(jugador3);
+                break;
+            case 30: position30.setIcon(jugador3);                              
+                break;
+       }
+    }
+    public void setPositionsJ3_(int res){       
+        switch(res){
+            case 1:                    
+                    position1.setIcon(null);                    
+                break;
+            case 2: position2.setIcon(null);
+                break;
+            case 3: position3.setIcon(null);
+                break;
+            case 4: position4.setIcon(null);
+                break;
+            case 5: position5.setIcon(null);
+                break;
+            case 6: position6.setIcon(null);
+                break;
+            case 7: position7.setIcon(null);
+                break;
+            case 8: position8.setIcon(null);
+                break;
+            case 9: position9.setIcon(null);
+                break;
+            case 10: position10.setIcon(null);
+                break;
+            case 11: position11.setIcon(null);
+                break;
+            case 12: position12.setIcon(null);
+                break;
+            case 13: position23.setIcon(null);
+                break;
+            case 14: position14.setIcon(null);
+                break;
+            case 15: position15.setIcon(null);
+                break;
+            case 16: position16.setIcon(null);
+                break;
+            case 17: position17.setIcon(null);
+                break;
+            case 18: position18.setIcon(null);
+                break;
+            case 19: position19.setIcon(null);
+                break;
+            case 20: position20.setIcon(null);
+                break;
+            case 21: position21.setIcon(null);
+                break;
+            case 22: position22.setIcon(null);
+                break;
+            case 23: position23.setIcon(null);
+                break;
+            case 24: position24.setIcon(null);
+                break;
+            case 25: position25.setIcon(null);
+                break;
+            case 26: position26.setIcon(null);
+                break;
+            case 27: position27.setIcon(null);
+                break;
+            case 28: position28.setIcon(null);
+                break;
+            case 29: position29.setIcon(null);
+                break;
+            case 30: position30.setIcon(null);                              
+                break;
+       }  
+    }
+    
+    public void setPositionsJ4(int res){       
+        switch(res){
+            case 1:                    
+                    position1.setIcon(jugador4);                    
+                break;
+            case 2: position2.setIcon(jugador4);
+                break;
+            case 3: position3.setIcon(jugador4);
+                break;
+            case 4: position4.setIcon(jugador4);
+                break;
+            case 5: position5.setIcon(jugador4);
+                break;
+            case 6: position6.setIcon(jugador4);
+                break;
+            case 7: position7.setIcon(jugador4);
+                break;
+            case 8: position8.setIcon(jugador4);
+                break;
+            case 9: position9.setIcon(jugador4);
+                break;
+            case 10: position10.setIcon(jugador4);
+                break;
+            case 11: position11.setIcon(jugador4);
+                break;
+            case 12: position12.setIcon(jugador4);
+                break;
+            case 13: position13.setIcon(jugador4);
+                break;
+            case 14: position14.setIcon(jugador4);
+                break;
+            case 15: position15.setIcon(jugador4);
+                break;
+            case 16: position16.setIcon(jugador4);
+                break;
+            case 17: position17.setIcon(jugador4);
+                break;
+            case 18: position18.setIcon(jugador4);
+                break;
+            case 19: position19.setIcon(jugador4);
+                break;
+            case 20: position20.setIcon(jugador4);
+                break;
+            case 21: position21.setIcon(jugador4);
+                break;
+            case 22: position22.setIcon(jugador4);
+                break;
+            case 23: position23.setIcon(jugador4);
+                break;
+            case 24: position24.setIcon(jugador4);
+                break;
+            case 25: position25.setIcon(jugador4);
+                break;
+            case 26: position26.setIcon(jugador4);
+                break;
+            case 27: position27.setIcon(jugador4);
+                break;
+            case 28: position28.setIcon(jugador4);
+                break;
+            case 29: position29.setIcon(jugador4);
+                break;
+            case 30: position30.setIcon(jugador4);                              
+                break;
+       }
+    }
+    public void setPositionsJ4_(int res){       
+        switch(res){
+            case 1:                    
+                    position1.setIcon(null);                    
+                break;
+            case 2: position2.setIcon(null);
+                break;
+            case 3: position3.setIcon(null);
+                break;
+            case 4: position4.setIcon(null);
+                break;
+            case 5: position5.setIcon(null);
+                break;
+            case 6: position6.setIcon(null);
+                break;
+            case 7: position7.setIcon(null);
+                break;
+            case 8: position8.setIcon(null);
+                break;
+            case 9: position9.setIcon(null);
+                break;
+            case 10: position10.setIcon(null);
+                break;
+            case 11: position11.setIcon(null);
+                break;
+            case 12: position12.setIcon(null);
+                break;
+            case 13: position23.setIcon(null);
+                break;
+            case 14: position14.setIcon(null);
+                break;
+            case 15: position15.setIcon(null);
+                break;
+            case 16: position16.setIcon(null);
+                break;
+            case 17: position17.setIcon(null);
+                break;
+            case 18: position18.setIcon(null);
+                break;
+            case 19: position19.setIcon(null);
+                break;
+            case 20: position20.setIcon(null);
+                break;
+            case 21: position21.setIcon(null);
+                break;
+            case 22: position22.setIcon(null);
+                break;
+            case 23: position23.setIcon(null);
+                break;
+            case 24: position24.setIcon(null);
+                break;
+            case 25: position25.setIcon(null);
+                break;
+            case 26: position26.setIcon(null);
+                break;
+            case 27: position27.setIcon(null);
+                break;
+            case 28: position28.setIcon(null);
+                break;
+            case 29: position29.setIcon(null);
+                break;
+            case 30: position30.setIcon(null);                              
+                break;
+       }  
     }
 
 }
